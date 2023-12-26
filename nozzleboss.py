@@ -48,7 +48,31 @@ class gcode_settings(bpy.types.PropertyGroup):
         name="Custom G-code per color",
         default="T1"
         )
-        
+    T2: StringProperty(
+        name="Custom G-code per color",
+        default="T2"
+        )
+    T3: StringProperty(
+        name="Custom G-code per color",
+        default="T3"
+        )
+    T4: StringProperty(
+        name="Custom G-code per color",
+        default="T4"
+        ) 
+    T5: StringProperty(
+        name="Custom G-code per color",
+        default="T2"
+        )
+    T6: StringProperty(
+        name="Custom G-code per color",
+        default="T3"
+        )
+    T7: StringProperty(
+        name="Custom G-code per color",
+        default="T4"
+        )    
+  
     start: StringProperty(
         name="Start G-code to append to every exported G-code file",
         default="Start"
@@ -136,12 +160,52 @@ class gcode_settings(bpy.types.PropertyGroup):
     
     color_T1: FloatVectorProperty(
         name="Color",
-        description="When ever this color is reached on export, add custom G-code in T0 textblock to export file",
+        description="When ever this color is reached on export, add custom G-code in T1 textblock to export file",
         subtype='COLOR', size=3, min=0, max=1, precision=3, step=0.1,
         default=(0.0, 0.0, 0.0)
     )
-
-
+  
+    color_T2: FloatVectorProperty(
+        name="Color",
+        description="When ever this color is reached on export, add custom G-code in T2 textblock to export file",
+        subtype='COLOR', size=3, min=0, max=1, precision=3, step=0.1,
+        default=(1.0, 1.0, 1.0)
+    )
+    
+    color_T3: FloatVectorProperty(
+        name="Color",
+        description="When ever this color is reached on export, add custom G-code in T3 textblock to export file",
+        subtype='COLOR', size=3, min=0, max=1, precision=3, step=0.1,
+        default=(0.0, 0.0, 0.0)
+    )
+  
+    color_T4: FloatVectorProperty(
+        name="Color",
+        description="When ever this color is reached on export, add custom G-code in T4 textblock to export file",
+        subtype='COLOR', size=3, min=0, max=1, precision=3, step=0.1,
+        default=(1.0, 1.0, 1.0)
+    )
+    
+    color_T5: FloatVectorProperty(
+        name="Color",
+        description="When ever this color is reached on export, add custom G-code in T5 textblock to export file",
+        subtype='COLOR', size=3, min=0, max=1, precision=3, step=0.1,
+        default=(0.0, 0.0, 0.0)
+    )
+  
+    color_T6: FloatVectorProperty(
+        name="Color",
+        description="When ever this color is reached on export, add custom G-code in T6 textblock to export file",
+        subtype='COLOR', size=3, min=0, max=1, precision=3, step=0.1,
+        default=(1.0, 1.0, 1.0)
+    )
+    
+    color_T7: FloatVectorProperty(
+        name="Color",
+        description="When ever this color is reached on export, add custom G-code in T7 textblock to export file",
+        subtype='COLOR', size=3, min=0, max=1, precision=3, step=0.1,
+        default=(0.0, 0.0, 0.0)
+    )
 
 
 
@@ -226,9 +290,38 @@ class NOZZLEBOSS_PT_Panel(bpy.types.Panel):
         row.prop_search(nozzleboss, "T0", bpy.data, "texts", text="")   
         row.separator(factor=2)   
         row.prop(nozzleboss, "color_T1", text="")
-        row.prop_search(nozzleboss, "T1", bpy.data, "texts", text="")   
+        row.prop_search(nozzleboss, "T1", bpy.data, "texts", text="") 
 
+        col.separator(factor=1)
+      
+        row = col.row(align=True)
+        row.enabled = nozzleboss.tool_color
+        row.prop(nozzleboss, "color_T2", text="")
+        row.prop_search(nozzleboss, "T2", bpy.data, "texts", text="")   
+        row.separator(factor=2)   
+        row.prop(nozzleboss, "color_T3", text="")
+        row.prop_search(nozzleboss, "T3", bpy.data, "texts", text="")
 
+        col.separator(factor=1)
+      
+        row = col.row(align=True)
+        row.enabled = nozzleboss.tool_color
+        row.prop(nozzleboss, "color_T4", text="")
+        row.prop_search(nozzleboss, "T4", bpy.data, "texts", text="")   
+        row.separator(factor=2)   
+        row.prop(nozzleboss, "color_T5", text="")
+        row.prop_search(nozzleboss, "T5", bpy.data, "texts", text="")
+
+        col.separator(factor=1)
+      
+        row = col.row(align=True)
+        row.enabled = nozzleboss.tool_color
+        row.prop(nozzleboss, "color_T6", text="")
+        row.prop_search(nozzleboss, "T6", bpy.data, "texts", text="")   
+        row.separator(factor=2)   
+        row.prop(nozzleboss, "color_T7", text="")
+        row.prop_search(nozzleboss, "T7", bpy.data, "texts", text="")
+        
         col.separator(factor=2)
 
         row=col.row(align=True) #start new column in row mode (row mode every element gets put behind each other)
@@ -285,6 +378,24 @@ def export_gcode(context):
     if not bpy.data.texts.get('T1'):
         bpy.data.texts.new('T1')
         bpy.data.texts['T1'].write('T1; switch to extruder T1 (any G-code macro can be passed here)\n')
+    if not bpy.data.texts.get('T2'):
+        bpy.data.texts.new('T2')
+        bpy.data.texts['T2'].write('T2; switch to extruder T2 (any G-code macro can be passed here)\n')
+    if not bpy.data.texts.get('T3'):
+        bpy.data.texts.new('T3')
+        bpy.data.texts['T3'].write('T3; switch to extruder T3 (any G-code macro can be passed here)\n')
+    if not bpy.data.texts.get('T4'):
+        bpy.data.texts.new('T4')
+        bpy.data.texts['T4'].write('T4; switch to extruder T4 (any G-code macro can be passed here)\n')
+    if not bpy.data.texts.get('T5'):
+        bpy.data.texts.new('T5')
+        bpy.data.texts['T5'].write('T5; switch to extruder T5 (any G-code macro can be passed here)\n')
+    if not bpy.data.texts.get('T6'):
+        bpy.data.texts.new('T6')
+        bpy.data.texts['T6'].write('T6; switch to extruder T6 (any G-code macro can be passed here)\n')
+    if not bpy.data.texts.get('T7'):
+        bpy.data.texts.new('T7')
+        bpy.data.texts['T7'].write('T7; switch to extruder T7 (any G-code macro can be passed here)\n')
     if not bpy.data.texts.get('Start'):
         bpy.data.texts.new('Start')
         bpy.data.texts['Start'].write(';nozzleboss\n')
@@ -408,6 +519,36 @@ def export_gcode(context):
                     _txt.append(read_textblock('T1'))
                 else:
                     _txt.append(read_textblock('T0'))  
+                  
+                if tool_colors[e_edges[i+1]]<0.5:
+                    _txt.append(read_textblock('T2'))
+                else:
+                    _txt.append(read_textblock('T0')) 
+
+                if tool_colors[e_edges[i+1]]<0.5:
+                    _txt.append(read_textblock('T3'))
+                else:
+                    _txt.append(read_textblock('T0')) 
+                  
+                if tool_colors[e_edges[i+1]]<0.5:
+                    _txt.append(read_textblock('T4'))
+                else:
+                    _txt.append(read_textblock('T0')) 
+                  
+                if tool_colors[e_edges[i+1]]<0.5:
+                    _txt.append(read_textblock('T5'))
+                else:
+                    _txt.append(read_textblock('T0')) 
+
+                if tool_colors[e_edges[i+1]]<0.5:
+                    _txt.append(read_textblock('T6'))
+                else:
+                    _txt.append(read_textblock('T0')) 
+
+                if tool_colors[e_edges[i+1]]<0.5:
+                    _txt.append(read_textblock('T7'))
+                else:
+                    _txt.append(read_textblock('T0')) 
 
                 prev_tool_color=tool_colors[e_edges[i+1]]   
 
