@@ -460,10 +460,11 @@ class GcodeModel:
                         if not bpy.data.texts.get('T7'):
                             bpy.data.texts.new('T7')
                             bpy.data.texts['T7'].write('T7; switch to extruder T7 (any G-code macro can be passed here)\n')
+                                
                         if not bpy.data.texts.get('Start'):
                             bpy.data.texts.new('Start')
                             bpy.data.texts['Start'].write(';nozzleboss\n')
-                            bpy.data.texts['Start'].write('G28 ;homing\n')
+                            bpy.data.texts['Start'].write('G28 G91 X0 Y0 Z1050 ;homing\n')
                             bpy.data.texts['Start'].write('M104 S0 ;set hotend temp\n')
                             bpy.data.texts['Start'].write('M190 S0 ;wait for bed temp\n')
                             bpy.data.texts['Start'].write('M109 S0 ;wait for hotendtemp\n')
@@ -475,8 +476,8 @@ class GcodeModel:
                             bpy.data.texts['End'].write('G10 ;retract\n')
                             bpy.data.texts['End'].write('M104 S0 ;deactivate hotend\n')
                             bpy.data.texts['End'].write('M140 S0 ;deactivate bed\n')
-                            bpy.data.texts['End'].write('G28 ;homing\n')
-                            bpy.data.texts['End'].write('M84 ;turn off motors\n')
+                            bpy.data.texts['End'].write('G28 G91 X0 Y0 Z1050 ;homing\n')
+                            #bpy.data.texts['End'].write('M84 ;turn off motors\n')
 
 
 
