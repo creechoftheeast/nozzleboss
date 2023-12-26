@@ -1,7 +1,7 @@
 bl_info = {
-    "name": "nozzleboss",
+    "name": "nozzleboss MultiTool",
     "description": "G-code Importer/Editor/Re-Exporter",
-    "author": "Heinz Löpmeier",
+    "author": "Heinz Löpmeier - edits by Stephen Creech",
     "version": (0, 0, 1),
     "blender": (3, 0, 0),
     "location": "3D View > nozzleboss",
