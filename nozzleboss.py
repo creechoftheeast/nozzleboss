@@ -396,6 +396,7 @@ def export_gcode(context):
     if not bpy.data.texts.get('T7'):
         bpy.data.texts.new('T7')
         bpy.data.texts['T7'].write('T7; switch to extruder T7 (any G-code macro can be passed here)\n')
+      
     if not bpy.data.texts.get('Start'):
         bpy.data.texts.new('Start')
         bpy.data.texts['Start'].write(';nozzleboss\n')
@@ -422,7 +423,7 @@ def export_gcode(context):
     gcode_txt = open(bpy.path.abspath("//")+bpy.path.basename(filename)+".gcode","w")
 
     _txt = []
-    start_code = read_textblock('Start')+'\n'#'G28\nM140 S50\nM109 S190\nM83\nG1 F600\n;RGB,-1,-1,-1\nM163 S0 P0\nM163 S1 P0\nM163 S2 P1\nM163 S3 P1\nM163 S4 P1\nM164 S0\nT0\n'
+    start_code = read_textblock('Start')+'\n'#'G28\nM140 S0\nM109 S0\nM83\nG1 F100\n;RGB,-1,-1,-1\nM163 S0 P0\nM163 S1 P0\nM163 S2 P1\nM163 S3 P1\nM163 S4 P1\nM164 S0\nT0\n'
     _txt.append(start_code)
     nozzle_diameter = nozzleboss.nozzle_diameter
     extrusion_speed = nozzleboss.extrusion_speed
