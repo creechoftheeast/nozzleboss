@@ -442,13 +442,31 @@ class GcodeModel:
                         if not bpy.data.texts.get('T1'):
                             bpy.data.texts.new('T1')
                             bpy.data.texts['T1'].write('T1; switch to extruder T1 (any G-code macro can be passed here)\n')
+                        if not bpy.data.texts.get('T2'):
+                            bpy.data.texts.new('T2')
+                            bpy.data.texts['T2'].write('T2; switch to extruder T2 (any G-code macro can be passed here)\n')
+                        if not bpy.data.texts.get('T3'):
+                            bpy.data.texts.new('T3')
+                            bpy.data.texts['T3'].write('T3; switch to extruder T3 (any G-code macro can be passed here)\n')
+                        if not bpy.data.texts.get('T4'):
+                            bpy.data.texts.new('T4')
+                            bpy.data.texts['T4'].write('T4; switch to extruder T4 (any G-code macro can be passed here)\n')
+                        if not bpy.data.texts.get('T5'):
+                            bpy.data.texts.new('T5')
+                            bpy.data.texts['T5'].write('T5; switch to extruder T5 (any G-code macro can be passed here)\n')
+                        if not bpy.data.texts.get('T6'):
+                            bpy.data.texts.new('T6')
+                            bpy.data.texts['T6'].write('T6; switch to extruder T6 (any G-code macro can be passed here)\n')
+                        if not bpy.data.texts.get('T7'):
+                            bpy.data.texts.new('T7')
+                            bpy.data.texts['T7'].write('T7; switch to extruder T7 (any G-code macro can be passed here)\n')
                         if not bpy.data.texts.get('Start'):
                             bpy.data.texts.new('Start')
                             bpy.data.texts['Start'].write(';nozzleboss\n')
                             bpy.data.texts['Start'].write('G28 ;homing\n')
-                            bpy.data.texts['Start'].write('M104 S180 ;set hotend temp\n')
-                            bpy.data.texts['Start'].write('M190 S50 ;wait for bed temp\n')
-                            bpy.data.texts['Start'].write('M109 S200 ;wait for hotendtemp\n')
+                            bpy.data.texts['Start'].write('M104 S0 ;set hotend temp\n')
+                            bpy.data.texts['Start'].write('M190 S0 ;wait for bed temp\n')
+                            bpy.data.texts['Start'].write('M109 S0 ;wait for hotendtemp\n')
                             bpy.data.texts['Start'].write('M83; relative extrusion mode (REQUIRED)\n')
                             
                             
