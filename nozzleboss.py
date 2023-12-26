@@ -400,9 +400,9 @@ def export_gcode(context):
         bpy.data.texts.new('Start')
         bpy.data.texts['Start'].write(';nozzleboss\n')
         bpy.data.texts['Start'].write('G28 ;homing\n')
-        bpy.data.texts['Start'].write('M104 S180 ;set hotend temp\n')
-        bpy.data.texts['Start'].write('M190 S50 ;wait for bed temp\n')
-        bpy.data.texts['Start'].write('M109 S200 ;wait for hotendtemp\n')
+        bpy.data.texts['Start'].write('M104 S0 ;set hotend temp\n')
+        bpy.data.texts['Start'].write('M190 S0 ;wait for bed temp\n')
+        bpy.data.texts['Start'].write('M109 S0 ;wait for hotendtemp\n')
         bpy.data.texts['Start'].write('M83; relative extrusion mode (REQUIRED)\n')
 
     if not bpy.data.texts.get('End'):
